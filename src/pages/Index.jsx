@@ -56,8 +56,12 @@ const Index = () => {
     <Box>
       <Header onRefresh={fetchPosts} />
       <Box mt={10} mb={6} display="flex" justifyContent="center" alignItems="center">
-        <Heading size="xl" textAlign="center" px={4} py={2}>
-          Stay ahead of the curve with the latest tech buzz! ⚡
+        <Heading size="xl" textAlign="center" px={4} py={2} display="inline-block">
+          Stay ahead of the curve with the{" "}
+          <Box as="span" position="relative">
+            latest<Box as="span" position="absolute" bottom="-1px" left="0" right="0" height="4px" bg="linear-gradient(to right, #FF0080, #7928CA, #FFEC38, #0070F3, #00C9B7)"></Box>
+          </Box>{" "}
+          tech buzz! ⚡
         </Heading>
       </Box>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
@@ -114,14 +118,11 @@ const PostItem = ({ post, imageUrl }) => {
   return (
     <Box w="full" bg={useColorModeValue("gray.50", "gray.700")} p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
       <TeaserImage imageUrl={imageUrl} postId={post.id} />
-      <Box position="relative">
-        <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
-          <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={1}>
-            {post.title}
-          </Text>
-        </Link>
-        <Box position="absolute" bottom="-1px" left="0" right="0" height="4px" bg="linear-gradient(to right, #FF0080, #7928CA, #FFEC38, #0070F3, #00C9B7)"></Box>
-      </Box>
+      <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
+        <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={1}>
+          {post.title}
+        </Text>
+      </Link>
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <Text fontSize="sm" color={infoColor}>
           by {post.by}
