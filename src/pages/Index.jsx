@@ -68,12 +68,15 @@ const Header = ({ onRefresh }) => {
   );
 };
 
+import TeaserImage from "../components/TeaserImage.jsx";
+
 const PostItem = ({ post }) => {
   const titleColor = useColorModeValue("gray.700", "gray.100");
   const infoColor = useColorModeValue("gray.500", "gray.400");
 
   return (
     <Box w="full">
+      <TeaserImage title={post.title} />
       <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
         <Text fontSize="lg" fontWeight="bold" color={titleColor}>
           {post.title}
