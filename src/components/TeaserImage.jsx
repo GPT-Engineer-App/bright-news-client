@@ -9,10 +9,8 @@ const TeaserImage = ({ postId, imageUrl }) => {
   // Removed this line as it's redundant and causing an error due to redeclaration of imageUrl
 
   return (
-    <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
-      <Box w="100%" h="180px" bg={`#${bgColor}`} mb={4} position="relative" overflow="hidden">
-        {imageUrl && <img src={imageUrl} alt={`Unsplash Image for Post ${postId}`} style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "md" }} />}
-      </Box>
+    <Box w="100%" h="180px" bg={`#${bgColor}`} mb={4} position="relative" overflow="hidden">
+      {imageUrl && <img src={imageUrl} alt={`Unsplash Image for Post ${postId}`} style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "md" }} />}
     </Box>
   );
 };
