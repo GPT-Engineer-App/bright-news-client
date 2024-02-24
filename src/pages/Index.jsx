@@ -58,7 +58,7 @@ const Index = () => {
       <Box mt={10} mb={6} display="flex" justifyContent="center" alignItems="center">
         <Heading size="xl" textAlign="center" px={4} py={2} display="inline-block">
           Stay ahead of the curve with the{" "}
-          <Box as="span" position="relative">
+          <Box as="span" position="relative" fontStyle="italic">
             latest
           </Box>{" "}
           tech buzz! ⚡
@@ -86,7 +86,7 @@ const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("#1a202c", "#1a202c");
   return (
-    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="transparent" style={{ borderBottom: "4px solid", borderColor: "red.500 blue.500 green.500 yellow.500" }}>
+    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="red.500" style={{ backgroundImage: "linear-gradient(to right, red.500, blue.500, green.500, yellow.500)" }} width="100%">
       <Heading size="lg" color="white" display="flex" alignItems="center">
         <Icon as={FaNewspaper} mr={2} w={6} h={6} />
         SpectaculrNews
