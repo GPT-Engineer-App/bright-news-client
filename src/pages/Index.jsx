@@ -51,8 +51,8 @@ const Index = () => {
     <Box>
       <Header onRefresh={fetchPosts} />
       <Box mt={10} mb={6} display="flex" justifyContent="center" alignItems="center">
-        <Heading size="2xl" textAlign="center" px={4} py={2}>
-          "Stay ahead of the curve with the latest tech buzz!"
+        <Heading size="xl" textAlign="center" px={4} py={2}>
+          Stay ahead of the curve with the latest tech buzz!
         </Heading>
       </Box>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
