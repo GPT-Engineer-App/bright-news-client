@@ -86,7 +86,7 @@ const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("#1a202c", "#1a202c");
   return (
-    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="transparent" style={{ backgroundImage: 'url(\'data:image/svg+xml;utf8,<svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg"><path d="M0,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%23E53E3E" stroke-width="4" fill="none"/><path d="M40,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%233182CE" stroke-width="4" fill="none"/><path d="M80,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%2338A169" stroke-width="4" fill="none"/></svg>\')', backgroundRepeat: "no-repeat", backgroundPosition: "bottom" }}>
+    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="transparent" style={{ borderBottom: "4px solid", borderColor: "red.500 blue.500 green.500 yellow.500" }}>
       <Heading size="lg" color="white" display="flex" alignItems="center">
         <Icon as={FaNewspaper} mr={2} w={6} h={6} />
         SpectaculrNews
