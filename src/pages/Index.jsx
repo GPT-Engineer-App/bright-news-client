@@ -59,7 +59,7 @@ const Index = () => {
         <Heading size="xl" textAlign="center" px={4} py={2} display="inline-block">
           Stay ahead of the curve with the{" "}
           <Box as="span" position="relative">
-            latest<Box as="span" position="absolute" bottom="-1px" left="0" right="0" height="4px" style={{ backgroundImage: 'url(\'data:image/svg+xml;utf8,<svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg"><path d="M0,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%23E53E3E" stroke-width="4" fill="none"/><path d="M40,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%233182CE" stroke-width="4" fill="none"/><path d="M80,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%2338A169" stroke-width="4" fill="none"/></svg>\')', backgroundRepeat: "no-repeat" }}></Box>
+            latest
           </Box>{" "}
           tech buzz! ⚡
         </Heading>
@@ -84,9 +84,9 @@ const Index = () => {
 
 const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("#005ce6", "#005ce6");
+  const bg = useColorModeValue("#1a202c", "#1a202c");
   return (
-    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm">
+    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="transparent" style={{ backgroundImage: 'url(\'data:image/svg+xml;utf8,<svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg"><path d="M0,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%23E53E3E" stroke-width="4" fill="none"/><path d="M40,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%233182CE" stroke-width="4" fill="none"/><path d="M80,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%2338A169" stroke-width="4" fill="none"/></svg>\')', backgroundRepeat: "no-repeat", backgroundPosition: "bottom" }}>
       <Heading size="lg" color="white" display="flex" alignItems="center">
         <Icon as={FaNewspaper} mr={2} w={6} h={6} />
         SpectaculrNews
