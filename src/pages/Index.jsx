@@ -87,7 +87,7 @@ const Header = ({ onRefresh }) => {
   const bg = useColorModeValue("#1a202c", "#1a202c");
   return (
     <Box bg="#1a202c" px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" style={{ borderBottom: "4px solid", borderImage: "linear-gradient(to right, #FF0080, #FF8C00, #FFD700, #008000, #00BFFF, #0000FF, #4B0082, #9400D3) 1" }} width="100%">
-      <Heading size="lg" color="white" fontFamily="heading" textTransform="uppercase">
+      <Heading size="lg" color="white" fontFamily="'Eczar', serif">
         SpectaculrNews
       </Heading>
       <Box>
