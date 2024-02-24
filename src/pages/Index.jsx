@@ -89,7 +89,30 @@ const Header = ({ onRefresh }) => {
 
 import TeaserImage from "../components/TeaserImage.jsx";
 
+const getEmojiForTitle = (title) => {
+  const keywords = {
+    javascript: "📟",
+    react: "⚛️",
+    tech: "🔬",
+    future: "🚀",
+    ai: "🤖",
+    blockchain: "⛓️",
+    cryptocurrency: "💰",
+    game: "🎮",
+    space: "🌌",
+  };
+
+  const lowerCaseTitle = title.toLowerCase();
+  for (const [keyword, emoji] of Object.entries(keywords)) {
+    if (lowerCaseTitle.includes(keyword)) {
+      return `${title} ${emoji}`;
+    }
+  }
+  return title;
+};
+
 const PostItem = ({ post }) => {
+  const titleWithEmoji = getEmojiForTitle(post.title);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.score);
   const titleColor = useColorModeValue("gray.700", "white");
@@ -111,9 +134,9 @@ const PostItem = ({ post }) => {
           <Icon as={FaHeart} color={likeCount > 0 ? iconColor : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
           {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
         </Button>
-        <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
-          <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
-            {post.title}
+        <Link href={post.url} isExternal _hover={{ textDecoration: "none" }} display="block">
+          <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3} isTruncated>
+            {titleWithEmoji}
           </Text>
           <Text fontSize="sm" color={infoColor}>
             by {post.by}
