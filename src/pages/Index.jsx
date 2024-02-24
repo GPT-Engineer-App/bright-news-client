@@ -87,7 +87,7 @@ const PostItem = ({ post }) => {
 
   return (
     <Box w="full" bg="gray.50" p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
-      <TeaserImage title={post.title} icon={icon} imageUrl={`https://via.placeholder.com/180?text=${post.id}`} />
+      <TeaserImage title={post.title} icon={icon} />
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
           <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
