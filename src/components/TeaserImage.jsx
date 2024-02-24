@@ -2,13 +2,14 @@ import React from "react";
 import { Box, useColorModeValue, Icon } from "@chakra-ui/react";
 import { FaRegNewspaper, FaMicrochip, FaRocket } from "react-icons/fa";
 
-const TeaserImage = ({ title, icon = FaRegNewspaper }) => {
-  const bgColor = useColorModeValue("gray.200", "gray.700");
-  const color = useColorModeValue("gray.600", "gray.300");
+const TeaserImage = ({ postId }) => {
+  const imageUrl = `https://via.placeholder.com/400x180?text=Post+ID:+${postId}`;
 
-  const firstLetter = title.charAt(0).toUpperCase();
-
-  return <Box w="100%" h="180px" bg={bgColor} color={color} display="flex" justifyContent="center" alignItems="center" borderRadius="md" mb={4} position="relative" overflow="hidden"></Box>;
+  return (
+    <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
+      <img src={imageUrl} alt={`Post ${postId}`} width="100%" height="180" style={{ objectFit: "cover", borderRadius: "md" }} />
+    </Box>
+  );
 };
 
 export default TeaserImage;
