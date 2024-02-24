@@ -48,12 +48,18 @@ const Index = () => {
             const imageResponse = await fetch(`https://source.unsplash.com/400x180/?${searchTerm}`);
             imageUrl = imageResponse.url; // The URL of the image is the final URL after redirections
           } catch {
-            // Fallback to a random search from predefined topics if specific search fails
-            const randomTopic = defaultSearchTerms[Math.floor(Math.random() * defaultSearchTerms.length)];
-            const fallbackImageResponse = await fetch(`https://source.unsplash.com/400x180/?${randomTopic}`);
-            imageUrl = fallbackImageResponse.url;
+            try {
+              // Fallback to a random search from predefined topics if specific search fails
+              const randomTopic = defaultSearchTerms[Math.floor(Math.random() * defaultSearchTerms.length)];
+              const fallbackImageResponse = await fetch(`https://source.unsplash.com/400x180/?${randomTopic}`);
+              imageUrl = fallbackImageResponse.url;
+            } catch {
+              // If no images found using keywords or default topics, use a completely random Unsplash image
+              const randomImageResponse = await fetch(`https://source.unsplash.com/400x180`);
+              imageUrl = randomImageResponse.url;
+            }
           }
-          return { ...post, imageUrl }; // Spread the original post data and add the image URL
+          return { ...post, imageUrl: imageUrl || `https://source.unsplash.com/400x180/?${defaultSearchTerms[Math.floor(Math.random() * defaultSearchTerms.length)]}` }; // Spread the original post data and add the image URL
         }),
       );
       setPosts(postsDataWithImages);
