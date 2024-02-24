@@ -33,37 +33,8 @@ const Index = () => {
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
       const postPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const defaultSearchTerms = ["technology", "space", "innovation"];
-      const postsDataWithImages = await Promise.all(
-        postPromises.map(async (postPromise) => {
-          const post = await postPromise;
-          // Extract keywords from each title, separated by spaces, and then join them with a comma
-          const keywords = post.title
-            .match(/\b(\w+)\b/g)
-            .filter((word, index, self) => self.indexOf(word) === index)
-            .join(",");
-          const searchTerm = encodeURIComponent(keywords);
-          let imageUrl;
-          try {
-            const imageResponse = await fetch(`https://source.unsplash.com/400x180/?${searchTerm}`);
-            imageUrl = imageResponse.url; // The URL of the image is the final URL after redirections
-          } catch {
-            try {
-              // Fallback to a random search from predefined topics if specific search fails
-              const randomTopic = defaultSearchTerms[Math.floor(Math.random() * defaultSearchTerms.length)];
-              const fallbackImageResponse = await fetch(`https://source.unsplash.com/400x180/?${randomTopic}`);
-              imageUrl = fallbackImageResponse.url;
-            } catch {
-              // If no images found using keywords or default topics, use a completely random Unsplash image
-              const randomImageResponse = await fetch(`https://source.unsplash.com/400x180`);
-              imageUrl = randomImageResponse.url;
-            }
-          }
-          return { ...post, imageUrl: imageUrl || `https://source.unsplash.com/400x180/?${defaultSearchTerms[Math.floor(Math.random() * defaultSearchTerms.length)]}` }; // Spread the original post data and add the image URL
-        }),
-      );
-      setPosts(postsDataWithImages);
-      // This line is not needed anymore and should be removed
+      const postsData = await Promise.all(postPromises);
+      setPosts(postsData);
     } catch (error) {
       toast({
         title: "Error fetching posts.",
