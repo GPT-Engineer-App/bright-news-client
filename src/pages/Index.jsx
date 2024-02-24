@@ -33,8 +33,17 @@ const Index = () => {
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
       const postPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const postsData = await Promise.all(postPromises);
-      setPosts(postsData);
+      const postsDataWithImages = await Promise.all(
+        postPromises.map(async (postPromise) => {
+          const post = await postPromise;
+          const searchTerm = encodeURIComponent(post.title.split(" ").slice(0, 3).join(" ")); // Use the first three words from the title as the search term
+          const imageResponse = await fetch(`https://source.unsplash.com/400x180/?${searchTerm}`);
+          const imageUrl = imageResponse.url; // The URL of the image is the final URL after redirections
+          return { ...post, imageUrl }; // Spread the original post data and add the image URL
+        }),
+      );
+      setPosts(postsDataWithImages);
+      // This line is not needed anymore and should be removed
     } catch (error) {
       toast({
         title: "Error fetching posts.",

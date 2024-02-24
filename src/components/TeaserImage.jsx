@@ -2,11 +2,11 @@ import React from "react";
 import { Box, useColorModeValue, Icon } from "@chakra-ui/react";
 import { FaRegNewspaper, FaMicrochip, FaRocket } from "react-icons/fa";
 
-const TeaserImage = ({ postId }) => {
+const TeaserImage = ({ postId, imageUrl }) => {
   // Generate a dynamic background color based on the post ID
   const bgHex = postId % 16777215; // This will generate a number between 0 and 16777215 (which is 'ffffff' in hex)
   const bgColor = bgHex.toString(16); // Convert this number to a hex string
-  const imageUrl = `https://source.unsplash.com/random/400x180?sig=${postId}`;
+  // Removed this line as it's redundant and causing an error due to redeclaration of imageUrl
 
   return postId ? (
     <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
