@@ -33,7 +33,12 @@ const Index = () => {
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
       const postPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const postsData = await Promise.all(postPromises);
+      const postsData = (await Promise.all(postPromises)).map((post) => {
+        const keywords = post.title.split(" ").filter((word) => word.length > 3);
+        const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : post.id % 2 === 0 ? "technology" : "space";
+        const imageUrl = `https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`;
+        return { ...post, imageUrl };
+      });
       setPosts(postsData);
     } catch (error) {
       toast({
@@ -65,7 +70,7 @@ const Index = () => {
           {posts
             .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
             .map((post) => (
-              <PostItem key={post.id} post={post} />
+              <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />
             ))}
         </SimpleGrid>
       )}
@@ -89,7 +94,7 @@ const Header = ({ onRefresh }) => {
 
 import TeaserImage from "../components/TeaserImage.jsx";
 
-const PostItem = ({ post }) => {
+const PostItem = ({ post, imageUrl }) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.score);
   const titleColor = useColorModeValue("gray.700", "white");
@@ -105,7 +110,7 @@ const PostItem = ({ post }) => {
 
   return (
     <Box w="full" bg={useColorModeValue("gray.50", "gray.700")} p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
-      <TeaserImage postId={post.id} postTitle={post.title} />
+      <TeaserImage imageUrl={imageUrl} />
       <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
         <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={1}>
           {post.title}
