@@ -17,7 +17,13 @@ const colors = {
   },
 };
 
-const theme = extendTheme({ colors });
+const theme = extendTheme({
+  colors,
+  fonts: {
+    heading: `'Segoe UI', 'San Francisco', 'Roboto', sans-serif`,
+    body: `'Segoe UI', 'San Francisco', 'Roboto', sans-serif`,
+  },
+});
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
