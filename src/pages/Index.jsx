@@ -70,7 +70,7 @@ const Index = () => {
           <Spinner size="xl" />
         </Box>
       ) : (
-        <SimpleGrid columns={3} spacing={8} mx="auto" maxWidth="1200px" px={8}>
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} mx="auto" maxWidth="1200px" px={8}>
           {posts
             .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
             .map((post) => (
