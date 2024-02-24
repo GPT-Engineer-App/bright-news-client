@@ -72,8 +72,7 @@ import TeaserImage from "../components/TeaserImage.jsx";
 
 const PostItem = ({ post }) => {
   const [liked, setLiked] = useState(false);
-  const likeInitialCount = Math.floor(Math.random() * 36);
-  const [likeCount, setLikeCount] = useState(likeInitialCount);
+  const [likeCount, setLikeCount] = useState(post.score);
   const titleColor = useColorModeValue("gray.700", "gray.100");
   const infoColor = useColorModeValue("gray.500", "gray.400");
   const iconColor = useColorModeValue("red.500", "red.200");
