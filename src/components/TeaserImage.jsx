@@ -8,11 +8,11 @@ const TeaserImage = ({ postId, imageUrl }) => {
   const bgColor = bgHex.toString(16); // Convert this number to a hex string
   // Removed this line as it's redundant and causing an error due to redeclaration of imageUrl
 
-  return postId ? (
+  return (
     <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
-      <img src={imageUrl} alt={`Unsplash Image for Post ${postId}`} width="100%" height="180" style={{ objectFit: "cover", borderRadius: "md" }} />
+      {imageUrl && <img src={imageUrl} alt={`Unsplash Image for Post ${postId}`} width="100%" height="180" style={{ objectFit: "cover", borderRadius: "md" }} />}
     </Box>
-  ) : null;
+  );
 };
 
 export default TeaserImage;
