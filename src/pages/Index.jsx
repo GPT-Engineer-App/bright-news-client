@@ -56,7 +56,7 @@ const Index = () => {
 
 const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("orange.300", "orange.600");
+  const bg = useColorModeValue("orange.300", "orange.700");
   return (
     <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm">
       <Heading size="lg">SpectaculrNews</Heading>
@@ -73,9 +73,9 @@ import TeaserImage from "../components/TeaserImage.jsx";
 const PostItem = ({ post }) => {
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(post.score);
-  const titleColor = useColorModeValue("gray.700", "gray.100");
-  const infoColor = useColorModeValue("gray.500", "gray.400");
-  const iconColor = useColorModeValue("red.500", "red.200");
+  const titleColor = useColorModeValue("gray.700", "white");
+  const infoColor = useColorModeValue("gray.500", "gray.200");
+  const iconColor = useColorModeValue("red.500", "red.300");
   const techKeywords = ["tech", "future"];
   const icon = techKeywords.some((keyword) => post.title.toLowerCase().includes(keyword)) ? FaMicrochip : FaRocket;
 
@@ -85,7 +85,7 @@ const PostItem = ({ post }) => {
   };
 
   return (
-    <Box w="full" bg="gray.50" p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
+    <Box w="full" bg={useColorModeValue("gray.50", "gray.700")} p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
       <TeaserImage title={post.title} icon={icon} />
       <Box display="flex" alignItems="center">
         <Button variant="ghost" onClick={handleLike} mr={4}>
