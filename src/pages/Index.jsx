@@ -5,7 +5,18 @@ import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket, FaHeart } from "react-ico
 // Replace with the actual API endpoint
 const HN_API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
 
+import { Input } from "@chakra-ui/react";
+
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
+  return (
+    <Box my={4} mx="auto" maxWidth="1200px" px={8}>
+      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} />
+    </Box>
+  );
+};
+
 const Index = () => {
+  const [searchQuery, setSearchQuery] = useState("");
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { colorMode, toggleColorMode } = useColorMode();
@@ -39,15 +50,18 @@ const Index = () => {
   return (
     <Box>
       <Header onRefresh={fetchPosts} />
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       {isLoading ? (
         <Box display="flex" justifyContent="center" mt="20">
           <Spinner size="xl" />
         </Box>
       ) : (
         <SimpleGrid columns={3} spacing={8} mx="auto" maxWidth="1200px" px={8}>
-          {posts.map((post) => (
-            <PostItem key={post.id} post={post} />
-          ))}
+          {posts
+            .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+            .map((post) => (
+              <PostItem key={post.id} post={post} />
+            ))}
         </SimpleGrid>
       )}
     </Box>
