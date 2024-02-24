@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, IconButton, useColorMode, SimpleGrid, Text, useColorModeValue, Link, Spinner, useToast, Button, Icon } from "@chakra-ui/react";
-import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket, FaHeart } from "react-icons/fa";
+import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket, FaHeart, FaNewspaper } from "react-icons/fa";
 
 // Replace with the actual API endpoint
 const HN_API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
@@ -83,7 +83,8 @@ const Header = ({ onRefresh }) => {
   const bg = useColorModeValue("#005ce6", "#005ce6");
   return (
     <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm">
-      <Heading size="lg" color="white">
+      <Heading size="lg" color="white" display="flex" alignItems="center">
+        <Icon as={FaNewspaper} mr={2} w={6} h={6} />
         SpectaculrNews
       </Heading>
       <Box>
