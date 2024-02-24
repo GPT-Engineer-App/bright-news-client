@@ -87,21 +87,19 @@ const PostItem = ({ post }) => {
   return (
     <Box w="full" bg="gray.50" p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
       <TeaserImage title={post.title} icon={icon} />
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Box display="flex" alignItems="center">
-          <Button variant="ghost" onClick={handleLike} mr={4}>
-            <Icon as={FaHeart} color={likeCount > 0 ? iconColor : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
-            {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
-          </Button>
-          <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
-            <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
-              {post.title}
-            </Text>
-            <Text fontSize="sm" color={infoColor}>
-              by {post.by}
-            </Text>
-          </Link>
-        </Box>
+      <Box display="flex" alignItems="center">
+        <Button variant="ghost" onClick={handleLike} mr={4}>
+          <Icon as={FaHeart} color={likeCount > 0 ? iconColor : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
+          {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
+        </Button>
+        <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
+          <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
+            {post.title}
+          </Text>
+          <Text fontSize="sm" color={infoColor}>
+            by {post.by}
+          </Text>
+        </Link>
       </Box>
     </Box>
   );
