@@ -20,7 +20,7 @@ const colors = {
 const theme = extendTheme({
   colors,
   fonts: {
-    heading: `'Segoe UI', 'San Francisco', 'Roboto', sans-serif`,
+    heading: `'Rubik', sans-serif`,
     body: `'Segoe UI', 'San Francisco', 'Roboto', sans-serif`,
   },
 });
