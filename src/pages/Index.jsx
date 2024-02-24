@@ -58,12 +58,12 @@ const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("orange.300", "orange.600");
   return (
-    <Box bg="gray.100" px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm">
-      <Heading size="lg" color="white">
-        SpectaculrNews
-      </Heading>
-      <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} colorScheme="whiteAlpha" mr={2} />
-      <IconButton icon={<FaRedo />} onClick={onRefresh} colorScheme="whiteAlpha" />
+    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm">
+      <Heading size="lg">SpectaculrNews</Heading>
+      <Box>
+        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} colorScheme="whiteAlpha" mr={2} />
+        <IconButton icon={<FaRedo />} onClick={onRefresh} colorScheme="whiteAlpha" />
+      </Box>
     </Box>
   );
 };
