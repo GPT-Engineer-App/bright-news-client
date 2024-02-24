@@ -86,7 +86,7 @@ const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("#1a202c", "#1a202c");
   return (
-    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="red.500" style={{ backgroundImage: "linear-gradient(to right, red.500, blue.500, green.500, yellow.500)" }} width="100%">
+    <Box bg={bg} px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm" borderBottom="4px solid" borderColor="red.500" style={{ backgroundImage: "linear-gradient(to right, #FF0080, #FF8C00, #FFD700, #008000, #00BFFF, #0000FF, #4B0082, #9400D3)" }} width="100%">
       <Heading size="lg" color="white" display="flex" alignItems="center">
         <Icon as={FaNewspaper} mr={2} w={6} h={6} />
         SpectaculrNews
