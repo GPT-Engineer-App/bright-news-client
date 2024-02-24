@@ -6,7 +6,7 @@ const TeaserImage = ({ postId }) => {
   // Generate a dynamic background color based on the post ID
   const bgHex = postId % 16777215; // This will generate a number between 0 and 16777215 (which is 'ffffff' in hex)
   const bgColor = bgHex.toString(16); // Convert this number to a hex string
-  const imageUrl = `https://source.unsplash.com/random/400x180?technology`;
+  const imageUrl = `https://source.unsplash.com/random/400x180?sig=${postId}`;
 
   return postId ? (
     <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
