@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, IconButton, useColorMode, VStack, Text, Divider, useColorModeValue, Link, Spinner, useToast } from "@chakra-ui/react";
+import { Box, Heading, IconButton, useColorMode, SimpleGrid, Text, Divider, useColorModeValue, Link, Spinner, useToast } from "@chakra-ui/react";
 import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket } from "react-icons/fa";
 
 // Replace with the actual API endpoint
@@ -44,11 +44,11 @@ const Index = () => {
           <Spinner size="xl" />
         </Box>
       ) : (
-        <VStack spacing={8} divider={<Divider borderColor="gray.200" />} p={8}>
+        <SimpleGrid columns={3} spacing={8} mx="auto" maxWidth="1200px" px={8}>
           {posts.map((post) => (
             <PostItem key={post.id} post={post} />
           ))}
-        </VStack>
+        </SimpleGrid>
       )}
     </Box>
   );
