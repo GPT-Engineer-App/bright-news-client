@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box, Heading, IconButton, useColorMode, SimpleGrid, Text, Divider, useColorModeValue, Link, Spinner, useToast } from "@chakra-ui/react";
-import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket } from "react-icons/fa";
+import { Box, Heading, IconButton, useColorMode, SimpleGrid, Text, useColorModeValue, Link, Spinner, useToast, Button, Icon } from "@chakra-ui/react";
+import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket, FaHeart } from "react-icons/fa";
 
 // Replace with the actual API endpoint
 const HN_API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
@@ -71,22 +71,36 @@ const Header = ({ onRefresh }) => {
 import TeaserImage from "../components/TeaserImage.jsx";
 
 const PostItem = ({ post }) => {
+  const [liked, setLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
   const titleColor = useColorModeValue("gray.700", "gray.100");
   const infoColor = useColorModeValue("gray.500", "gray.400");
+  const iconColor = useColorModeValue("red.500", "red.200");
   const techKeywords = ["tech", "future"];
   const icon = techKeywords.some((keyword) => post.title.toLowerCase().includes(keyword)) ? FaMicrochip : FaRocket;
+
+  const handleLike = () => {
+    setLiked(!liked);
+    setLikeCount(liked ? likeCount - 1 : likeCount + 1);
+  };
 
   return (
     <Box w="full" bg="gray.50" p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
       <TeaserImage title={post.title} icon={icon} />
-      <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
-        <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
-          {post.title}
-        </Text>
-        <Text fontSize="sm" color={infoColor}>
-          {post.score} points by {post.by}
-        </Text>
-      </Link>
+      <Box display="flex" justifyContent="space-between" alignItems="center">
+        <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
+          <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
+            {post.title}
+          </Text>
+          <Text fontSize="sm" color={infoColor}>
+            {post.score} points by {post.by}
+          </Text>
+        </Link>
+        <Button variant="ghost" onClick={handleLike}>
+          <Icon as={FaHeart} color={liked ? iconColor : "gray.400"} />
+          {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
+        </Button>
+      </Box>
     </Box>
   );
 };
