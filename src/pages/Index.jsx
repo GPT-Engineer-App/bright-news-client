@@ -98,7 +98,7 @@ const PostItem = ({ post }) => {
           </Text>
         </Link>
         <Button variant="ghost" onClick={handleLike}>
-          <Icon as={FaHeart} color={liked ? iconColor : "gray.400"} />
+          <Icon as={FaHeart} color={likeCount > 0 ? "red.500" : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
           {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
         </Button>
       </Box>
