@@ -3,7 +3,10 @@ import { Box, useColorModeValue, Icon } from "@chakra-ui/react";
 import { FaRegNewspaper, FaMicrochip, FaRocket } from "react-icons/fa";
 
 const TeaserImage = ({ postId }) => {
-  const imageUrl = `https://via.placeholder.com/400x180?text=Post+ID:+${postId}`;
+  // Generate a dynamic background color based on the post ID
+  const bgHex = postId % 16777215; // This will generate a number between 0 and 16777215 (which is 'ffffff' in hex)
+  const bgColor = bgHex.toString(16); // Convert this number to a hex string
+  const imageUrl = `https://via.placeholder.com/400x180/${bgColor}/ffffff?text=Post+ID:+${postId}`;
 
   return postId ? (
     <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
