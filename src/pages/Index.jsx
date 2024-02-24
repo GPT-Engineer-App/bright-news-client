@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, IconButton, useColorMode, VStack, Text, Divider, useColorModeValue, Link, Spinner, useToast } from "@chakra-ui/react";
-import { FaSun, FaMoon, FaRedo } from "react-icons/fa";
+import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket } from "react-icons/fa";
 
 // Replace with the actual API endpoint
 const HN_API_URL = "https://hacker-news.firebaseio.com/v0/topstories.json";
@@ -73,10 +73,12 @@ import TeaserImage from "../components/TeaserImage.jsx";
 const PostItem = ({ post }) => {
   const titleColor = useColorModeValue("gray.700", "gray.100");
   const infoColor = useColorModeValue("gray.500", "gray.400");
+  const techKeywords = ["tech", "future"];
+  const icon = techKeywords.some((keyword) => post.title.toLowerCase().includes(keyword)) ? FaMicrochip : FaRocket;
 
   return (
     <Box w="full">
-      <TeaserImage title={post.title} />
+      <TeaserImage title={post.title} icon={icon} />
       <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
         <Text fontSize="lg" fontWeight="bold" color={titleColor}>
           {post.title}

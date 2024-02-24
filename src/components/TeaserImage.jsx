@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, useColorModeValue, Icon } from "@chakra-ui/react";
-import { FaRegNewspaper } from "react-icons/fa";
+import { FaRegNewspaper, FaMicrochip, FaRocket } from "react-icons/fa";
 
-const TeaserImage = ({ title }) => {
+const TeaserImage = ({ title, icon = FaRegNewspaper }) => {
   const bgColor = useColorModeValue("gray.200", "gray.700");
   const color = useColorModeValue("gray.600", "gray.300");
 
@@ -10,7 +10,7 @@ const TeaserImage = ({ title }) => {
 
   return (
     <Box w="100%" h="180px" bg={bgColor} color={color} display="flex" justifyContent="center" alignItems="center" borderRadius="md" mb={4} position="relative" overflow="hidden">
-      <Icon as={FaRegNewspaper} w={24} h={24} opacity="0.2" />
+      <Icon as={icon} w={24} h={24} opacity="0.2" />
       <Box position="absolute" fontSize="6xl" fontWeight="bold" opacity="0.8">
         {firstLetter}
       </Box>
