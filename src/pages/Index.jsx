@@ -93,7 +93,7 @@ const PostItem = ({ post }) => {
             {post.title}
           </Text>
           <Text fontSize="sm" color={infoColor}>
-            {post.score} points by {post.by}
+            by {post.by}
           </Text>
         </Link>
         <Button variant="ghost" onClick={handleLike}>
