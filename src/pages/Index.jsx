@@ -90,24 +90,6 @@ const Header = ({ onRefresh }) => {
 import TeaserImage from "../components/TeaserImage.jsx";
 
 const getEmojiForTitle = (title) => {
-  const keywords = {
-    javascript: "📟",
-    react: "⚛️",
-    tech: "🔬",
-    future: "🚀",
-    ai: "🤖",
-    blockchain: "⛓️",
-    cryptocurrency: "💰",
-    game: "🎮",
-    space: "🌌",
-  };
-
-  const lowerCaseTitle = title.toLowerCase();
-  for (const [keyword, emoji] of Object.entries(keywords)) {
-    if (lowerCaseTitle.includes(keyword)) {
-      return `${title} ${emoji}`;
-    }
-  }
   return title;
 };
 
