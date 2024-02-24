@@ -44,7 +44,7 @@ const Index = () => {
           <Spinner size="xl" />
         </Box>
       ) : (
-        <VStack spacing={4} divider={<Divider />} p={4}>
+        <VStack spacing={8} divider={<Divider borderColor="gray.200" />} p={8}>
           {posts.map((post) => (
             <PostItem key={post.id} post={post} />
           ))}
@@ -58,7 +58,7 @@ const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("orange.300", "orange.600");
   return (
-    <Box bg="gray.900" px={4} py={2} display="flex" justifyContent="space-between" alignItems="center">
+    <Box bg="gray.100" px={4} py={4} display="flex" justifyContent="space-between" alignItems="center" boxShadow="sm">
       <Heading size="lg" color="white">
         SpectaculrNews
       </Heading>
@@ -77,13 +77,13 @@ const PostItem = ({ post }) => {
   const icon = techKeywords.some((keyword) => post.title.toLowerCase().includes(keyword)) ? FaMicrochip : FaRocket;
 
   return (
-    <Box w="full" bg="white" p={5} shadow="md" borderRadius="lg" mb={4}>
+    <Box w="full" bg="gray.50" p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
       <TeaserImage title={post.title} icon={icon} />
       <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
-        <Text fontSize="xl" fontWeight="bold" color={titleColor} mb={2}>
+        <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={3}>
           {post.title}
         </Text>
-        <Text fontSize="md" color={infoColor}>
+        <Text fontSize="sm" color={infoColor}>
           {post.score} points by {post.by}
         </Text>
       </Link>
