@@ -58,7 +58,7 @@ const Header = ({ onRefresh }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const bg = useColorModeValue("orange.300", "orange.600");
   return (
-    <Box bg={bg} px={4} py={3} display="flex" justifyContent="space-between" alignItems="center">
+    <Box bg="gray.900" px={4} py={2} display="flex" justifyContent="space-between" alignItems="center">
       <Heading size="lg" color="white">
         SpectaculrNews
       </Heading>
@@ -77,13 +77,13 @@ const PostItem = ({ post }) => {
   const icon = techKeywords.some((keyword) => post.title.toLowerCase().includes(keyword)) ? FaMicrochip : FaRocket;
 
   return (
-    <Box w="full">
+    <Box w="full" bg="white" p={5} shadow="md" borderRadius="lg" mb={4}>
       <TeaserImage title={post.title} icon={icon} />
       <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
-        <Text fontSize="lg" fontWeight="bold" color={titleColor}>
+        <Text fontSize="xl" fontWeight="bold" color={titleColor} mb={2}>
           {post.title}
         </Text>
-        <Text fontSize="sm" color={infoColor}>
+        <Text fontSize="md" color={infoColor}>
           {post.score} points by {post.by}
         </Text>
       </Link>
