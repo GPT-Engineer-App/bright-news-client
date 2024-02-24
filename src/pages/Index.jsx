@@ -105,7 +105,7 @@ const PostItem = ({ post }) => {
 
   return (
     <Box w="full" bg={useColorModeValue("gray.50", "gray.700")} p={6} shadow="lg" borderRadius="lg" mb={6} transition="transform 0.2s, box-shadow 0.2s" _hover={{ transform: "translateY(-4px)", shadow: "xl" }}>
-      <TeaserImage postId={post.id} />
+      <TeaserImage postId={post.id} postTitle={post.title} />
       <Link href={post.url} isExternal _hover={{ textDecoration: "none" }}>
         <Text fontSize="2xl" fontWeight="bold" color={titleColor} mb={1}>
           {post.title}

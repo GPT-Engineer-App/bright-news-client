@@ -2,11 +2,10 @@ import React from "react";
 import { Box, useColorModeValue, Icon } from "@chakra-ui/react";
 import { FaRegNewspaper, FaMicrochip, FaRocket } from "react-icons/fa";
 
-const TeaserImage = ({ postId }) => {
-  // Generate a dynamic background color based on the post ID
-  const bgHex = postId % 16777215; // This will generate a number between 0 and 16777215 (which is 'ffffff' in hex)
-  const bgColor = bgHex.toString(16); // Convert this number to a hex string
-  const keyword = postId % 2 === 0 ? "technology" : "space";
+const TeaserImage = ({ postId, postTitle }) => {
+  // Find a keyword in the post title or fallback to "technology" or "space"
+  const keywords = postTitle.split(" ").filter((word) => word.length > 3);
+  const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : postId % 2 === 0 ? "technology" : "space";
   const imageUrl = `https://source.unsplash.com/random/400x180?sig=${postId}&${keyword}`;
 
   return postId ? (
