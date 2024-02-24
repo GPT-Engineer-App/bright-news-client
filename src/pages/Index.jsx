@@ -59,7 +59,7 @@ const Index = () => {
         <Heading size="xl" textAlign="center" px={4} py={2} display="inline-block">
           Stay ahead of the curve with the{" "}
           <Box as="span" position="relative">
-            latest<Box as="span" position="absolute" bottom="-1px" left="0" right="0" height="4px" bg="repeating-linear-gradient(to right, #E53E3E 0, #E53E3E 33%, #3182CE 33%, #3182CE 66%, #38A169 66%, #38A169 100%)" style={{ backgroundImage: "url(\"data:image/svg+xml;utf8,<svg width='10' height='4' xmlns='http://www.w3.org/2000/svg'><path d='M0 0 L10 0 L10 4 L0 4 Z' fill='%23E53E3E'/><path d='M10 0 L20 0 L20 4 L10 4 Z' fill='%233182CE'/><path d='M20 0 L30 0 L30 4 L20 4 Z' fill='%2338A169'/></svg>\")" }}></Box>
+            latest<Box as="span" position="absolute" bottom="-1px" left="0" right="0" height="4px" style={{ backgroundImage: 'url(\'data:image/svg+xml;utf8,<svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg"><path d="M0,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%23E53E3E" stroke-width="4" fill="none"/><path d="M40,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%233182CE" stroke-width="4" fill="none"/><path d="M80,2 q10,-4 20,0 t20,0 q10,4 20,0 t20,0 q10,-4 20,0 t20,0 q10,4 20,0 t20,0" stroke="%2338A169" stroke-width="4" fill="none"/></svg>\')', backgroundRepeat: "no-repeat" }}></Box>
           </Box>{" "}
           tech buzz! ⚡
         </Heading>
