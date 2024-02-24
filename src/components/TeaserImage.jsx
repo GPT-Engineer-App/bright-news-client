@@ -10,7 +10,9 @@ const TeaserImage = ({ postId, imageUrl }) => {
 
   return (
     <Box w="100%" h="180px" mb={4} position="relative" overflow="hidden">
-      {imageUrl && <img src={imageUrl} alt={`Unsplash Image for Post ${postId}`} width="100%" height="180" style={{ objectFit: "cover", borderRadius: "md" }} />}
+      <Box w="100%" h="180px" bg={`#${bgColor}`} mb={4} position="relative" overflow="hidden">
+        {imageUrl && <img src={imageUrl} alt={`Unsplash Image for Post ${postId}`} style={{ width: "100%", height: "180px", objectFit: "cover", borderRadius: "md" }} />}
+      </Box>
     </Box>
   );
 };
