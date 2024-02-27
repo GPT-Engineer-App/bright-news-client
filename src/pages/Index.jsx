@@ -129,8 +129,8 @@ const Header = ({ onRefresh }) => {
         Spectactulr News
       </Heading>
       <Box>
-        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent" }} iconColor="white" mr={2} />
-        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent" }} iconColor="white" />
+        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent" }} color="white" mr={2} />
+        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent" }} color="white" />
       </Box>
     </Box>
   );
