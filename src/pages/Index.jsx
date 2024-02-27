@@ -33,12 +33,20 @@ const Index = () => {
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
       const postPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const postsData = (await Promise.all(postPromises)).map((post) => {
-        const keywords = post.title.split(" ").filter((word) => word.length > 3);
-        const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : post.id % 2 === 0 ? "technology" : "space";
-        const imageUrl = `https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`;
-        return { ...post, imageUrl };
+      const postsData = (await Promise.all(postPromises)).map(async (post) => {
+        try {
+          const keywords = post.title.split(" ").filter((word) => word.length > 3);
+          const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : post.id % 2 === 0 ? "technology" : "space";
+          const imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`);
+          const imageUrl = imageUrlResponse.url;
+          return { ...post, imageUrl };
+        } catch (error) {
+          const fallbackKeyword = post.id % 2 === 0 ? "technology" : "space";
+          const imageUrl = `https://source.unsplash.com/random/400x180?${fallbackKeyword}`;
+          return { ...post, imageUrl };
+        }
       });
+      setPosts(await Promise.all(postsData));
       setPosts(postsData);
     } catch (error) {
       toast({
