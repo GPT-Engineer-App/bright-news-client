@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Text, Input, Button, useColorModeValue } from "@chakra-ui/react";
 
 const EmailOptIn = () => {
-  const backgroundColor = useColorModeValue("purple.600", "purple.400");
+  const backgroundColor = useColorModeValue("blue.800", "blue.900");
   const textColor = useColorModeValue("white", "gray.800");
 
   return (
@@ -11,9 +11,12 @@ const EmailOptIn = () => {
         Get the latest tech news straight to your inbox!
       </Text>
       <Input placeholder="Enter your email..." size="lg" mb={4} />
-      <Button size="lg" colorScheme="orange" variant="solid">
+      <Button size="lg" backgroundColor="white" color="blue.800" _hover={{ bg: "blue.100" }}>
         Subscribe Now
       </Button>
+      <Text fontSize="lg" mt={2}>
+        Join our exclusive list for daily insights that keep you one step ahead in the tech world.
+      </Text>
     </Box>
   );
 };

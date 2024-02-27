@@ -86,7 +86,6 @@ const Index = () => {
         </Heading>
       </Box>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <EmailOptIn />
       {isLoading ? (
         <Box display="flex" justifyContent="center" mt="20">
           <Spinner size="xl" />
@@ -99,6 +98,19 @@ const Index = () => {
               <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />
             ))}
         </SimpleGrid>
+      )}
+      <EmailOptIn />
+      <Box display="flex" justifyContent="center" mt="20">
+        <Spinner size="xl" />
+      </Box>
+      ) : (
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} mx="auto" maxWidth="1200px" px={8}>
+        {posts
+          .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+          .map((post) => (
+            <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />
+          ))}
+      </SimpleGrid>
       )}
       <CookieConsent />
       <Footer />
