@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, IconButton, useColorMode, SimpleGrid, Text, useColorModeValue, Link, Spinner, useToast, Button, Icon } from "@chakra-ui/react";
 import CookieConsent from "../components/CookieConsent";
+import EmailOptIn from "../components/EmailOptIn.jsx";
 import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket, FaHeart, FaNewspaper } from "react-icons/fa";
 
 // Replace with the actual API endpoint
@@ -85,6 +86,7 @@ const Index = () => {
         </Heading>
       </Box>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <EmailOptIn />
       {isLoading ? (
         <Box display="flex" justifyContent="center" mt="20">
           <Spinner size="xl" />
