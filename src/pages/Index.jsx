@@ -12,7 +12,7 @@ import { Input } from "@chakra-ui/react";
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
     <Box my={4} mx="auto" maxWidth="1200px" px={8}>
-      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" />
+      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" display="block" />
     </Box>
   );
 };
@@ -129,8 +129,8 @@ const Header = ({ onRefresh }) => {
         Spectactulr News
       </Heading>
       <Box>
-        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent", color: "#D4D700" }} iconColor="#FCFF4B" mr={2} />
-        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent", color: "#D4D700" }} iconColor="#FCFF4B" />
+        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent", color: "#FAF9F6" }} iconColor="white" mr={2} />
+        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent", color: "#FAF9F6" }} iconColor="white" />
       </Box>
     </Box>
   );
