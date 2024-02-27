@@ -3,7 +3,7 @@ import { Box, Text, Input, Button, useColorModeValue } from "@chakra-ui/react";
 
 const EmailOptIn = () => {
   const backgroundColor = "yellow.300";
-  const textColor = useColorModeValue("white", "gray.800");
+  const textColor = useColorModeValue("white", "white");
 
   return (
     <Box w="full" mx="auto" bg="#005ce6" pt="8" pb="8" color={textColor} textAlign="center" my={6}>

@@ -12,7 +12,7 @@ import { Input } from "@chakra-ui/react";
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
     <Box my={4} mx="auto" maxWidth="1200px" px={8}>
-      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" />
+      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" margin="0 auto" />
     </Box>
   );
 };
@@ -114,7 +114,6 @@ const Index = () => {
             .map((post) => <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />)
         )}
       </SimpleGrid>
-      <EmailOptIn />
       <CookieConsent />
       <Footer />
     </Box>
@@ -130,8 +129,8 @@ const Header = ({ onRefresh }) => {
         Spectactulr News
       </Heading>
       <Box>
-        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent" }} iconColor="#FCFF4B" mr={2} />
-        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent" }} iconColor="#FCFF4B" />
+        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent", color: "#D4D700" }} iconColor="#FCFF4B" mr={2} />
+        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent", color: "#D4D700" }} iconColor="#FCFF4B" />
       </Box>
     </Box>
   );
@@ -169,7 +168,7 @@ const PostItem = ({ post, imageUrl }) => {
           </Text>
         </Box>
         <Button variant="ghost" onClick={handleLike}>
-          <Icon as={FaHeart} color={likeCount > 0 ? iconColor : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
+          <Icon as={FaHeart} color={likeCount > 0 ? "#F92A82" : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
           {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
         </Button>
       </Box>
