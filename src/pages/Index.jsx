@@ -43,7 +43,7 @@ const Index = () => {
           let attempts = 0;
           while (imageUrl === "" && attempts < fallbackKeywords.length) {
             imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${attempts > 0 ? fallbackKeywords[attempts - 1] : keyword}`);
-            if (imageUrlResponse.status === 200) {
+            if (imageUrlResponse.status === 200 && !imageUrlResponse.url.includes("source-404")) {
               imageUrl = imageUrlResponse.url;
             }
             attempts++;
