@@ -2,11 +2,11 @@ import React from "react";
 import { Box, Text, Input, Button, useColorModeValue } from "@chakra-ui/react";
 
 const EmailOptIn = () => {
-  const backgroundColor = useColorModeValue("blue.800", "blue.900");
+  const backgroundColor = "yellow.300";
   const textColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Box w="full" bg={backgroundColor} p={8} color={textColor} textAlign="center" mb={6}>
+    <Box w="full" maxW="1200px" mx="auto" bg={backgroundColor} p={8} color={textColor} textAlign="center" mb={6}>
       <Text fontSize="2xl" fontWeight="bold" mb={4}>
         Get the latest tech news straight to your inbox!
       </Text>
