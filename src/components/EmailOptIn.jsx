@@ -13,8 +13,8 @@ const EmailOptIn = () => {
       <Text fontSize="md" my={2}>
         Join our exclusive list for daily insights that keep you one step ahead in the tech world.
       </Text>
-      <Input placeholder="Enter your email..." size="lg" mb={6} width="auto" maxW="500px" _placeholder={{ color: "gray.700" }} />
-      <Button size="lg" backgroundColor="white" color="#005ce6" _hover={{ bg: "#e7f1ff" }} mt={0}>
+      <Input placeholder="Enter your email..." size="lg" mb={4} width="auto" maxW="500px" _placeholder={{ color: "gray.200" }} />
+      <Button size="lg" backgroundColor="white" color="#005ce6" _hover={{ bg: "#e7f1ff" }} mt={4}>
         Subscribe Now
       </Button>
     </Box>
