@@ -47,10 +47,20 @@ const Index = () => {
       const images = await Promise.all(imagePromises);
 
       // Combine post details with images
-      const postsWithImages = postsDetails.map((post, index) => ({
-        ...post,
-        imageUrl: images[index] || "https://via.placeholder.com/400x180?text=No+Image",
-      }));
+      const postsWithImages = postsDetails.map((post, index) => {
+        const date = new Date(post.time * 1000).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+        const category = post.type.charAt(0).toUpperCase() + post.type.slice(1);
+        return {
+          ...post,
+          imageUrl: images[index] || "https://via.placeholder.com/400x180?text=No+Image",
+          date,
+          category,
+        };
+      });
 
       setPosts(postsWithImages);
     } catch (error) {
@@ -139,9 +149,11 @@ const PostItem = ({ post, imageUrl }) => {
         </Text>
       </Link>
       <Box display="flex" alignItems="center" justifyContent="space-between">
-        <Text fontSize="sm" color={infoColor}>
-          by {post.by}
-        </Text>
+        <Box>
+          <Text fontSize="sm" color={infoColor}>
+            by {post.by} | {post.date} | {post.category}
+          </Text>
+        </Box>
         <Button variant="ghost" onClick={handleLike}>
           <Icon as={FaHeart} color={likeCount > 0 ? iconColor : "gray.400"} _hover={{ color: likeCount > 0 ? "red.700" : "gray.500" }} _active={{ color: likeCount > 0 ? "red.800" : "gray.600" }} />
           {likeCount > 0 && <Text ml={2}>{likeCount}</Text>}
