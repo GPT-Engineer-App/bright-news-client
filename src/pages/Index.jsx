@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Heading, IconButton, useColorMode, SimpleGrid, Text, useColorModeValue, Link, Spinner, useToast, Button, Icon } from "@chakra-ui/react";
-import CookieConsent from "../components/CookieConsent.jsx";
+import CookieConsent from "../components/CookieConsent";
 import { FaSun, FaMoon, FaRedo, FaMicrochip, FaRocket, FaHeart, FaNewspaper } from "react-icons/fa";
 
 // Replace with the actual API endpoint
@@ -100,6 +100,7 @@ const Index = () => {
             ))}
         </SimpleGrid>
       )}
+      <CookieConsent />
     </Box>
   );
 };
