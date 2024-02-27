@@ -32,10 +32,10 @@ const Index = () => {
     try {
       const response = await fetch(HN_API_URL);
       const postIds = await response.json();
-      const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
+      const topFivePostIds = postIds.slice(0, 5); // Get top 5 posts for brevity and improved loading speed
       // Fetch post details and images in parallel
-      const postDetailsPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const imagePromises = topTenPostIds.map((id) =>
+      const postDetailsPromises = topFivePostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
+      const imagePromises = topFivePostIds.map((id) =>
         fetch(`https://source.unsplash.com/random/400x180?sig=${id}&technology`)
           .then((response) => response.url)
           .catch(() => "https://via.placeholder.com/400x180?text=No+Image"),
