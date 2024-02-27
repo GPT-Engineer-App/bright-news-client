@@ -32,7 +32,7 @@ const Index = () => {
     try {
       const response = await fetch(HN_API_URL);
       const postIds = await response.json();
-      const topFivePostIds = postIds.slice(0, 5); // Get top 5 posts for brevity and improved loading speed
+      const topFivePostIds = postIds.slice(0, 10); // Get top 10 posts
       // Fetch post details and images in parallel
       const postDetailsPromises = topFivePostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
       const imagePromises = topFivePostIds.map((id) =>
