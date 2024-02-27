@@ -47,7 +47,6 @@ const Index = () => {
         }
       });
       setPosts(await Promise.all(postsData));
-      setPosts(postsData);
     } catch (error) {
       toast({
         title: "Error fetching posts.",
