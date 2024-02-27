@@ -101,6 +101,7 @@ const Index = () => {
         </SimpleGrid>
       )}
       <CookieConsent />
+      <Footer />
     </Box>
   );
 };
@@ -122,6 +123,7 @@ const Header = ({ onRefresh }) => {
 };
 
 import TeaserImage from "../components/TeaserImage.jsx";
+import Footer from "../components/Footer";
 
 const PostItem = ({ post, imageUrl }) => {
   const [liked, setLiked] = useState(false);
