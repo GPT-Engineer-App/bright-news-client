@@ -37,8 +37,13 @@ const Index = () => {
         try {
           const keywords = post.title.split(" ").filter((word) => word.length > 3);
           const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : post.id % 2 === 0 ? "technology" : "space";
-          const imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`);
-          const imageUrl = imageUrlResponse.url;
+          let imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`);
+          let imageUrl = imageUrlResponse.url;
+          if (imageUrlResponse.status !== 200) {
+            const fallbackKeyword = post.id % 2 === 0 ? "technology" : "space";
+            imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?${fallbackKeyword}`);
+            imageUrl = imageUrlResponse.status === 200 ? imageUrlResponse.url : "";
+          }
           return { ...post, imageUrl };
         } catch (error) {
           const fallbackKeyword = post.id % 2 === 0 ? "technology" : "space";
