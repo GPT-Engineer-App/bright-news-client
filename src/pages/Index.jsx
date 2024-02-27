@@ -34,34 +34,25 @@ const Index = () => {
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
       const postPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const postsData = (await Promise.all(postPromises)).map(async (post) => {
-        try {
-          const keywords = post.title.split(" ").filter((word) => word.length > 3);
-          const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : post.id % 2 === 0 ? "technology" : "space";
-          let imageUrlResponse;
-          let imageUrl = "";
-          const fallbackKeywords = ["technology", "space"];
-          let attempts = 0;
-          while (imageUrl === "" && attempts < fallbackKeywords.length) {
-            imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${attempts > 0 ? fallbackKeywords[attempts - 1] : keyword}`);
-            if (imageUrlResponse.status === 200 && !imageUrlResponse.url.includes("source-404")) {
-              imageUrl = imageUrlResponse.url;
-            }
-            attempts++;
-          }
-          return { ...post, imageUrl };
-        } catch (error) {
-          toast({
-            title: "Error fetching images.",
-            description: error.message,
-            status: "error",
-            duration: 9000,
-            isClosable: true,
-          });
-          return { ...post, imageUrl: "https://source.unsplash.com/random/400x180?technology" };
-        }
+      const postsDetails = await Promise.all(postPromises);
+      // Fetch images in parallel after getting post details
+      const imageFetchPromises = postsDetails.map((post) => {
+        const keyword =
+          post.title
+            .split(" ")
+            .find((word) => word.length > 3)
+            ?.toLowerCase() || "technology";
+        return fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`)
+          .then((response) => response.url)
+          .catch(() => "https://via.placeholder.com/400x180?text=No+Image"); // Return placeholder image in case of error
       });
-      setPosts(await Promise.all(postsData));
+      const images = await Promise.all(imageFetchPromises);
+      // Combine posts details with images
+      const postsWithImages = postsDetails.map((post, index) => ({
+        ...post,
+        imageUrl: images[index].includes("source-404") ? "https://via.placeholder.com/400x180?text=No+Image" : images[index],
+      }));
+      setPosts(postsWithImages);
     } catch (error) {
       toast({
         title: "Error fetching posts.",
