@@ -37,19 +37,14 @@ const Index = () => {
       const topFivePostIds = postIds.slice(0, 10); // Get top 10 posts
       // Fetch post details and images in parallel
       const postDetailsPromises = topFivePostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const imagePromises = topFivePostIds.map((id) =>
-        fetch(`https://source.unsplash.com/random/400x180?sig=${id}&technology`)
-          .then((response) => response.url)
-          .catch(() => "https://via.placeholder.com/400x180?text=No+Image"),
-      );
-
       // Resolve post details promises
       const postsDetails = await Promise.all(postDetailsPromises);
-      // Resolve image promises
-      const images = await Promise.all(imagePromises);
 
-      // Combine post details with images
-      const postsWithImages = postsDetails.map((post, index) => {
+      // Use a placeholder image for all posts
+      const placeholderImage = "https://via.placeholder.com/400x180?text=No+Image";
+
+      // Assign placeholder image to each post
+      const postsWithImages = postsDetails.map((post) => {
         const date = new Date(post.time * 1000).toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
@@ -58,7 +53,7 @@ const Index = () => {
         const category = post.type.charAt(0).toUpperCase() + post.type.slice(1);
         return {
           ...post,
-          imageUrl: images[index] || "https://via.placeholder.com/400x180?text=No+Image",
+          imageUrl: placeholderImage,
           date,
           category,
         };
