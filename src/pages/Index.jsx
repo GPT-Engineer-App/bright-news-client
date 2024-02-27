@@ -23,6 +23,8 @@ const Index = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const toast = useToast();
 
+  // Removing the fetchPosts function from the dependency array to prevent infinite re-renders
+  // Change the useEffect dependency to an empty array to prevent re-fetching due to function reference change.
   useEffect(() => {
     fetchPosts();
   }, []);
