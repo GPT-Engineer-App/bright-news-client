@@ -33,25 +33,25 @@ const Index = () => {
       const response = await fetch(HN_API_URL);
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
-      const postPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const postsDetails = await Promise.all(postPromises);
-      // Fetch images in parallel after getting post details
-      const imageFetchPromises = postsDetails.map((post) => {
-        const keyword =
-          post.title
-            .split(" ")
-            .find((word) => word.length > 3)
-            ?.toLowerCase() || "technology";
-        return fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`)
+      // Start fetching post details and images in parallel
+      const postDetailsPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
+      const imagePromises = topTenPostIds.map((id) => {
+        const keyword = "technology"; // Use a general keyword for all images
+        return fetch(`https://source.unsplash.com/random/400x180?sig=${id}&${keyword}`)
           .then((response) => response.url)
-          .catch(() => "https://via.placeholder.com/400x180?text=No+Image"); // Return placeholder image in case of error
+          .catch(() => "https://via.placeholder.com/400x180?text=No+Image"); // Use a placeholder image on error
       });
-      const images = await Promise.all(imageFetchPromises);
-      // Combine posts details with images
-      const postsWithImages = postsDetails.map((post, index) => ({
-        ...post,
-        imageUrl: images[index].includes("source-404") ? "https://via.placeholder.com/400x180?text=No+Image" : images[index],
-      }));
+
+      // Resolve all promises and combine post details with images
+      const [postsDetails, images] = await Promise.all([Promise.all(postDetailsPromises), Promise.all(imagePromises)]);
+
+      const postsWithImages = postsDetails.map((post, index) => {
+        return {
+          ...post,
+          imageUrl: images[index] || "https://via.placeholder.com/400x180?text=No+Image",
+        };
+      });
+
       setPosts(postsWithImages);
     } catch (error) {
       toast({
