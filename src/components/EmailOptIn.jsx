@@ -7,8 +7,8 @@ const EmailOptIn = () => {
 
   return (
     <Box w="full" mx="auto" bg="#005ce6" p={6} color={textColor} textAlign="center" mb={0}>
-      <Text fontSize="xl" fontWeight="bold" mb={3}>
-        Get the latest tech news straight to your inbox!
+      <Text fontSize="1.25xl" fontWeight="bold" mb={3}>
+        Get the latest tech news straight to your inbox! ✨
       </Text>
       <Text fontSize="md" my={2}>
         Join our exclusive list for daily insights that keep you one step ahead in the tech world.
