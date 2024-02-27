@@ -33,24 +33,24 @@ const Index = () => {
       const response = await fetch(HN_API_URL);
       const postIds = await response.json();
       const topTenPostIds = postIds.slice(0, 10); // Get top 10 posts for brevity
-      // Start fetching post details and images in parallel
+      // Fetch post details and images in parallel
       const postDetailsPromises = topTenPostIds.map((id) => fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`).then((res) => res.json()));
-      const imagePromises = topTenPostIds.map((id) => {
-        const keyword = "technology"; // Use a general keyword for all images
-        return fetch(`https://source.unsplash.com/random/400x180?sig=${id}&${keyword}`)
+      const imagePromises = topTenPostIds.map((id) =>
+        fetch(`https://source.unsplash.com/random/400x180?sig=${id}&technology`)
           .then((response) => response.url)
-          .catch(() => "https://via.placeholder.com/400x180?text=No+Image"); // Use a placeholder image on error
-      });
+          .catch(() => "https://via.placeholder.com/400x180?text=No+Image"),
+      );
 
-      // Resolve all promises and combine post details with images
-      const [postsDetails, images] = await Promise.all([Promise.all(postDetailsPromises), Promise.all(imagePromises)]);
+      // Resolve post details promises
+      const postsDetails = await Promise.all(postDetailsPromises);
+      // Resolve image promises
+      const images = await Promise.all(imagePromises);
 
-      const postsWithImages = postsDetails.map((post, index) => {
-        return {
-          ...post,
-          imageUrl: images[index] || "https://via.placeholder.com/400x180?text=No+Image",
-        };
-      });
+      // Combine post details with images
+      const postsWithImages = postsDetails.map((post, index) => ({
+        ...post,
+        imageUrl: images[index] || "https://via.placeholder.com/400x180?text=No+Image",
+      }));
 
       setPosts(postsWithImages);
     } catch (error) {
