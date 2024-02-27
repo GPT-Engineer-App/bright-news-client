@@ -40,10 +40,10 @@ const Index = () => {
       // Resolve post details promises
       const postsDetails = await Promise.all(postDetailsPromises);
 
-      // Use a placeholder image for all posts
-      const placeholderImage = "https://via.placeholder.com/400x180?text=No+Image";
+      // Function to generate Unsplash image URLs
+      const getUnsplashImageUrl = (postId) => `https://source.unsplash.com/random/400x180?sig=${postId}`;
 
-      // Assign placeholder image to each post
+      // Assign Unsplash image to each post
       const postsWithImages = postsDetails.map((post) => {
         const date = new Date(post.time * 1000).toLocaleDateString("en-US", {
           year: "numeric",
@@ -53,7 +53,7 @@ const Index = () => {
         const category = post.type.charAt(0).toUpperCase() + post.type.slice(1);
         return {
           ...post,
-          imageUrl: placeholderImage,
+          imageUrl: getUnsplashImageUrl(post.id),
           date,
           category,
         };
