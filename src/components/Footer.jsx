@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Box as="footer" py="5" width="full" bg="#1a202c" mt="8" textAlign="center">
+    <Box as="footer" py="5" width="full" bg="#1a202c" textAlign="center">
       <Container>
         <Text fontSize="sm" color="gray.100">
           Created by 🤖 and proud of it!

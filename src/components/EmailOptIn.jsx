@@ -6,11 +6,11 @@ const EmailOptIn = () => {
   const textColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Box w="full" bg="blue.500" p={8} color={textColor} textAlign="center" mb={0}>
+    <Box w="65%" mx="auto" bg="blue.500" p={8} color={textColor} textAlign="center" mb={0}>
       <Text fontSize="2xl" fontWeight="bold">
         Get the latest tech news straight to your inbox!
       </Text>
-      <Input placeholder="Enter your email..." size="lg" mb={4} />
+      <Input placeholder="Enter your email..." size="lg" mb={4} width="auto" maxW="500px" />
       <Text fontSize="lg" mt={4}>
         Join our exclusive list for daily insights that keep you one step ahead in the tech world.
       </Text>
