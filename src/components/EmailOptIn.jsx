@@ -6,7 +6,7 @@ const EmailOptIn = () => {
   const textColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Box w="full" mx="auto" bg="#005ce6" pt="8" pb="8" color={textColor} textAlign="center" mb={0}>
+    <Box w="full" mx="auto" bg="#005ce6" pt="8" pb="8" color={textColor} textAlign="center" my={6}>
       <Text fontSize="lg" fontWeight="bold" mb={3}>
         Get the latest tech news straight to your inbox! ✨
       </Text>

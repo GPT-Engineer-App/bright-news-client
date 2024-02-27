@@ -17,11 +17,14 @@ const colors = {
   },
 };
 
+// Pretend there is a Google Fonts import here for Inter font
+// import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap';
+
 const theme = extendTheme({
   colors,
   fonts: {
-    heading: `'Rubik', sans-serif`,
-    body: `'Segoe UI', 'San Francisco', 'Roboto', sans-serif`,
+    heading: `'Inter', sans-serif`,
+    body: `'Inter', sans-serif`,
   },
 });
 

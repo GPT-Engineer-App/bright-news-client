@@ -12,7 +12,7 @@ import { Input } from "@chakra-ui/react";
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
     <Box my={4} mx="auto" maxWidth="1200px" px={8}>
-      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} />
+      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" />
     </Box>
   );
 };
@@ -91,25 +91,28 @@ const Index = () => {
         </Heading>
       </Box>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      {isLoading ? (
-        <Box display="flex" justifyContent="center" mt="20">
-          <Spinner size="xl" />
-        </Box>
-      ) : (
-        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} mx="auto" maxWidth="1200px" px={8}>
-          {posts
-            .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
-            .map((post) => (
-              <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />
-            ))}
-        </SimpleGrid>
-      )}
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} mx="auto" maxWidth="1200px" px={8}>
-        {posts
-          .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
-          .map((post) => (
-            <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />
-          ))}
+        {isLoading ? (
+          <Box display="flex" justifyContent="center" mt="20">
+            <Spinner size="xl" />
+          </Box>
+        ) : (
+          posts
+            .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+            .slice(0, 3)
+            .map((post) => <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />)
+        )}
+      </SimpleGrid>
+      <EmailOptIn />
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} mx="auto" maxWidth="1200px" px={8}>
+        {isLoading ? (
+          <></>
+        ) : (
+          posts
+            .filter((post) => post.title.toLowerCase().includes(searchQuery.toLowerCase()))
+            .slice(3)
+            .map((post) => <PostItem key={post.id} post={post} imageUrl={post.imageUrl} />)
+        )}
       </SimpleGrid>
       <EmailOptIn />
       <CookieConsent />
@@ -127,8 +130,8 @@ const Header = ({ onRefresh }) => {
         Spectactulr News
       </Heading>
       <Box>
-        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} colorScheme="whiteAlpha" mr={2} />
-        <IconButton icon={<FaRedo />} onClick={onRefresh} colorScheme="whiteAlpha" />
+        <IconButton icon={colorMode === "light" ? <FaMoon /> : <FaSun />} onClick={toggleColorMode} variant="ghost" _hover={{ bg: "transparent" }} iconColor="#FCFF4B" mr={2} />
+        <IconButton icon={<FaRedo />} onClick={onRefresh} variant="ghost" _hover={{ bg: "transparent" }} iconColor="#FCFF4B" />
       </Box>
     </Box>
   );
