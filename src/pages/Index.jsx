@@ -12,7 +12,7 @@ import { Input } from "@chakra-ui/react";
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
   return (
     <Box my={4} mx="auto" maxWidth="1200px" px={8}>
-      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" margin="0 auto" />
+      <Input placeholder="Search posts..." value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} border="none" backgroundColor="brand.100" color="brand.900" _placeholder={{ color: "brand.300" }} width="60%" mx="auto" />
     </Box>
   );
 };
