@@ -76,8 +76,13 @@ const Index = () => {
   return (
     <Box>
       <Header onRefresh={fetchPosts} />
-      <Box mt={10} mb={6} display="flex" justifyContent="center" alignItems="center">
-        <Heading size="xl" textAlign="center" px={4} py={2} display="inline-block">
+      <Box bg="gray.900" w="full" py={4} textAlign="center">
+        <Text fontSize="lg" color="white" mx="auto" maxW="1200px">
+          Discover the future of technology today and be part of the conversation that shapes our tomorrow.
+        </Text>
+      </Box>
+      <Box mt={6} display="flex" justifyContent="center" alignItems="center">
+        <Heading size="xl" textAlign="center" px={4} py={2} display="inline-block" mx="auto" maxW="1200px">
           Stay ahead of the curve with the{" "}
           <Box as="span" position="relative" fontStyle="italic">
             latest
