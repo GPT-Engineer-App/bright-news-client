@@ -37,21 +37,27 @@ const Index = () => {
         try {
           const keywords = post.title.split(" ").filter((word) => word.length > 3);
           const keyword = keywords.length > 0 ? keywords[0].toLowerCase() : post.id % 2 === 0 ? "technology" : "space";
+          let imageUrlResponse;
           let imageUrl = "";
           const fallbackKeywords = ["technology", "space"];
-          let imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${keyword}`);
-          if (imageUrlResponse.status === 200) {
-            imageUrl = imageUrlResponse.url;
-          } else {
-            const fallbackKeyword = fallbackKeywords[Math.floor(Math.random() * fallbackKeywords.length)];
-            imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?${fallbackKeyword}`);
-            imageUrl = imageUrlResponse.status === 200 ? imageUrlResponse.url : "";
+          let attempts = 0;
+          while (imageUrl === "" && attempts < fallbackKeywords.length) {
+            imageUrlResponse = await fetch(`https://source.unsplash.com/random/400x180?sig=${post.id}&${attempts > 0 ? fallbackKeywords[attempts - 1] : keyword}`);
+            if (imageUrlResponse.status === 200) {
+              imageUrl = imageUrlResponse.url;
+            }
+            attempts++;
           }
           return { ...post, imageUrl };
         } catch (error) {
-          const fallbackKeyword = post.id % 2 === 0 ? "technology" : "space";
-          const imageUrl = `https://source.unsplash.com/random/400x180?${fallbackKeyword}`;
-          return { ...post, imageUrl };
+          toast({
+            title: "Error fetching images.",
+            description: error.message,
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
+          return { ...post, imageUrl: "https://source.unsplash.com/random/400x180?technology" };
         }
       });
       setPosts(await Promise.all(postsData));
